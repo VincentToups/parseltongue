@@ -162,9 +162,38 @@ as possible and returns them in a list, possibly an empty one:
 The combinator `=>one-plus-more` does the same except it fails if
 there is not at least one parsable object.
 
+Non-determinism
+---------------
+
+Parseltongue, like SMUG, is actually a non-deterministic library -
+parsers can parse in multiple ways _simultaneously_.  I'll write some
+documentation about that later, but if you are using it for regular
+deterministic parser, you are usually interested in only the first
+parser-result.  Hence, the function `parse/first-result` is a handy
+thing:
+
+    (parser/first-result (=>string "a") "abc") -> "a"
+
+It returns the first parse result and leaves off the leftover input.  
+
+Thanks
+------
+
+I'd like to thank Drew for writing up SMUG, which was critical in
+developing an understanding of monads in Lisp and obviously in
+inspiring this library.  He also provided some correspondence when I
+didn't understand aspects of his code.
+
+Other Notes:
+------------
+
+If you like this library, it is almost a line for line port of an
+Elisp parser combinator library I also wrote, available in my
+[emacs-utils][] repository here on github.
+
 * * *
 
 [SMUG]:http://common-lisp.net/~dcrampsie/smug.html   
-
+[emacs-utils]:https://github.com/VincentToups/emacs-utils
 
 
