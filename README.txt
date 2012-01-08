@@ -11,11 +11,14 @@ This is a parser combinator library for Common Lisp inspired by [SMUG][],
 by Drew Crampsie and augmented with improvements inspired by my own
 usage of this library and other monadic computations in various Lisps.
 
-Fear not, you needn't need to understand how monads work in order to
-make good use of this library.  For those uninterested in how the
-library works, there are only two things you need to know to use it:
-what parsers are, how to use combinators on them, and how to use the
-special syntax in the `parser` and `defparser` forms.
+This library probably has the same functionality as SMUG but migth be
+more familiar to those used to Haskell's do notation.
+
+Fear not, you needn't understand how monads work in order to make good
+use of this library.  For those uninterested in how the library works,
+there are only two things you need to know to use it: what parsers
+are, how to use combinators on them, and how to use the special syntax
+in the `parser` and `defparser` forms.
 
 Parsers
 -------
@@ -158,7 +161,10 @@ as possible and returns them in a list, possibly an empty one:
 
 The combinator `=>one-plus-more` does the same except it fails if
 there is not at least one parsable object.
-   
+
+* * *
+
+[SMUG]:http://common-lisp.net/~dcrampsie/smug.html   
 
 
 
