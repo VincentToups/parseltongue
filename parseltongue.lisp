@@ -1,3 +1,7 @@
+;;; Copyright 2012, Vincent Toups
+;;; This program is distributed under the terms of the GNU Lesser 
+;;; General Public License (see license.txt).
+
 ;;;; parseltongue.lisp
 
 (in-package #:parseltongue)
@@ -56,6 +60,9 @@
 	 (lambda (item)
 	   (make-parser-pair :value item :input input))
 	 items)))
+
+(defun => (&rest items)
+  (apply #'parser-return items))
 
 
 (defmacro parser (&rest forms)
