@@ -169,5 +169,5 @@
 			"bbbb")))
 
 
-(run-tests)
+(run-tests :all)
 
