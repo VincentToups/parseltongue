@@ -92,13 +92,15 @@
 	  ((not (cdr forms))
 	   (car forms)))))
 
-(defmacro defun/var (name arg-list &rest body)
-  `(progn
-	 (defun ,name ,arg-list ,@body)
-	 (declaim (function ,name))
-	 (setq ,name #',name)))
+(eval-when (:compile-toplevel :load-toplevel :execute) 
+  (defmacro defun/var (name arg-list &rest body)
+	`(progn
+	   (defun ,name ,arg-list ,@body)
+	   (defvar ,name #',name "A parser")
+	   (setq ,name #',name))))
 
 (defun/var =nil (input)
+  (declare (ignore input))
   (list))
 
 (defun/var =item (input)
@@ -138,7 +140,11 @@
   (reduce #'=>or2 ps))
 
 (defun =>and2 (=p1 =p2)
-  (parser =p1 =p2))
+  (lambda (input)
+	(let* ((r1 (funcall =p1 input)))
+	  (if r1 
+		  (funcall =p2 (parser-pair-input r1))
+		  nil))))
 
 (defun =>and (&rest ps)
   (reduce #'=>and2 ps))
